@@ -1,0 +1,94 @@
+<h4 class="adminTitle">Liste des produits signalés</h4>
+<div class="data-table-container px-5">
+  @if (signalements.length>0) {
+
+  <table datatable [dtOptions]="dtOptions" class="table">
+    <thead id="thead">
+      <tr>
+        <th>Image</th>
+        <th>Nom</th>
+        <th>Commerçant</th>
+        <th>Etat</th>
+        <th class="last-th">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of signalements; track $index) {
+      <tr>
+        <td><img src="{{ urlBaseImage }}{{ item.Image }}" alt="" /></td>
+        <td>{{ item.Produit }}</td>
+        <td>{{ item.email_commercant }}</td>
+        <td>{{ item.Etat }}</td>
+        <td class="text-center">
+          <i
+            class="bi bi-eye"
+            data-bs-toggle="modal"
+            data-bs-target="#detailsSignalement"
+            (click)="showProduitSignaler(item.Id)"
+          ></i>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  }
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="detailsSignalement"
+  data-bs-backdrop="static"
+  tabindex="-1"
+  aria-labelledby="detailsSignalementLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered p-0 modal-lg">
+    <div class="modal-content m-0 px-3 form-container">
+      <!-- <div class="form-container px-5"> -->
+      <div class="d-flex justify-content-evenly w-100">
+        <div class="left-side">
+          <div class="w-75 m-auto">
+            <div class="image">
+              <img src="{{ urlBaseImage }}{{ produitSignale.image }}" alt="" />
+            </div>
+            <div class="text">
+              <h3 class="fw-bold">{{ produitSignale.nom_produit }}</h3>
+              <p><i class="bi bi-x-octagon"></i> signalé</p>
+            </div>
+          </div>
+        </div>
+        <div class="right-side">
+          <h5 class="fw-bold fs-4 mt-4 text-center mb-3">Signalement</h5>
+          <p>
+            Produit : <br />
+            <span>Titre : {{ produitSignale.nom_produit }}</span> <br />
+            <span>Prix : {{ produitSignale.prix }} fcfa</span>
+          </p>
+          <p>
+            Commerçant : <br />
+            <span>Nom : {{ produitSignale.nom_commercant }}</span> <br />
+            <span>Telephone : {{ produitSignale.numero_commercant }}</span>
+            <br />
+            <span>Email : {{ produitSignale.email_commercant }}</span>
+          </p>
+          <p>
+            Motif du signalement : <br />
+            <span>
+              {{ produitSignale.motif }}
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end w-100 mt-3 mb-3">
+        <button class="btn w-25 mx-3" (click)="bloquerPRoduitSignaler()">
+          @if (produitSignale.etat=="pas_bloquer") { Bloquer }@else { Débloquer
+          }
+        </button>
+        <button class="btn w-25" data-bs-dismiss="modal" aria-label="Close">
+          Fermer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

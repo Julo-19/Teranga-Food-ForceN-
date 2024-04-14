@@ -1,0 +1,52 @@
+@if (whoIsOnline()!="admin"){
+<app-header></app-header>
+<!-- <app-accueil></app-accueil> -->
+@if (isOnline()) {
+
+<div class="side-router-container">
+  <div class="sidemenu">
+    @if (whoIsOnline()=="commercant") {
+
+    <div [routerLink]="['/listVente']">
+      <img src="assets/commandes.png" alt="" />
+      <span>Mes ventes</span>
+    </div>
+    <div [routerLink]="['/listProduit']">
+      <img src="assets/produits.png" alt="" />
+      <span>Mes produits</span>
+    </div>
+    }
+    <div [routerLink]="['/profile']">
+      <img src="assets/profile.png" alt="" />
+      <span>Mon profile</span>
+    </div>
+    <div [routerLink]="['/adresse']">
+      <img src="assets/location.png" alt="" />
+      <span>Mon adresse</span>
+    </div>
+    @if (whoIsOnline()=="client") {
+    <div [routerLink]="['/commande']">
+      <img src="assets/commandes.png" alt="" />
+      <span>Mes commandes</span>
+    </div>
+
+    } @if (whoIsOnline()=="livreur") {
+    <div [routerLink]="['/livraisonLivreur']">
+      <img src="assets/meslivraisons.png" alt="" />
+      <span>Mes livraisons</span>
+    </div>
+
+    }
+  </div>
+  <div class="router-section">
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </div>
+</div>
+} @if (!isOnline()) {
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+
+} }@else {
+<router-outlet></router-outlet>
+}

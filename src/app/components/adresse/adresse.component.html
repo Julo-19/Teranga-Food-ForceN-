@@ -1,0 +1,21 @@
+<div class="container mt-3">
+  <div class="form-container px-5">
+    <h5 class="fw-bold fs-4">Votre adresse</h5>
+    <div class="d-flex justify-content-center align-items-center form-container-element">
+
+      <div class="form-left">
+        <div class="form-element d-flex align-items-center">
+          <label for="">Adresse</label>
+          <!-- <input type="email" [(ngModel)]="adresse"> -->
+          <textarea name="" id="" cols="30" rows="10" class="px-3" [(ngModel)]="adresse"></textarea>
+        </div>
+      </div>
+      <div class="form-image">
+        <img src="assets/adresse_image.png" class="img-fluid" alt="">
+      </div>
+    </div>
+    <div class="text-center w-100">
+      <button class="btn" (click)="modification()" >Enregistrer</button>
+    </div>
+  </div>
+</div>

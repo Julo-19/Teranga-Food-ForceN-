@@ -1,0 +1,37 @@
+<h4 class="adminTitle">Liste des utilisateurs</h4>
+<div class="data-table-container px-5">
+  @if (listeUtilisateurs.length>0) {
+
+  <table datatable [dtOptions]="dtOptions" class="table">
+    <thead id="thead">
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Numero</th>
+        <th>Genre</th>
+        <th>Type</th>
+        <th class="last-th">Etat_Compte</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of listeUtilisateurs; track $index) {
+      <tr>
+        <td>{{ item.nom }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.numero_tel }}</td>
+        <td>{{ item.genre }}</td>
+        <td>{{ item.type }}</td>
+        <td class="text-center">
+          <!-- {{ item.etat_compte }} -->
+          <button class="btn " (click)="bloquerUtilisateur(item.id)">
+            @if (item.etat_compte=="actif") { Actif }@else { Inactif }
+          </button>
+        </td>
+
+        <!-- <td class="text-center"><i class="bi bi-eye"></i></td> -->
+      </tr>
+      }
+    </tbody>
+  </table>
+  }
+</div>

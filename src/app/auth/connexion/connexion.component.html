@@ -1,0 +1,31 @@
+<div class="container mt-3">
+  <div class="form-container px-5">
+    <h5 class="fw-bold fs-4">Connexion</h5>
+    <div class="d-flex justify-content-center align-items-center form-container-element">
+
+      <div class="form-left">
+        <div class="form-element">
+          <div class="d-flex flex-column">
+            <label for="">Email </label>
+            <span class="span_validate" id="validationEmail"></span>
+          </div>
+          <input type="email" [(ngModel)]="email" style="margin-left: 10px;" (input)="emailValidate()">
+        </div>
+        <div class="form-element">
+          <div class="d-flex flex-column">
+            <label for="">Pass </label>
+            <span class="span_validate" id="validationPasse"></span>
+          </div>
+          <input type="password" id="passwordInput" [(ngModel)]="password" style="margin-left: 10px;" (input)="passeValidate()">
+          <i class="bi bi-eye"  (click)="showPassword()"></i>
+        </div>
+      </div>
+      <div class="form-image">
+        <img src="assets/login_image.png" class="img-fluid" alt="">
+      </div>
+    </div>
+    <div class="text-center w-100">
+      <button class="btn" (click)="connexion()" [disabled]="truthyTab.length<2">Connexion</button>
+    </div>
+  </div>
+</div>

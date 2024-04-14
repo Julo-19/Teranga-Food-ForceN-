@@ -1,0 +1,64 @@
+<div class="panier-left p-2">
+  <div class="section-title">
+    <h4>Historiques des livraisons</h4>
+    <hr />
+  </div>
+  <div class="table-responsive">
+    @if (livraisons.length>0) {
+
+    <table datatable [dtOptions]="dtOptions" class="table">
+      <thead id="thead">
+        <tr>
+          <th>Date</th>
+          <th >Commerçant</th>
+          <th >Client</th>
+          <th class="last-th">Livraison</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of livraisons; track $index) {
+        <tr>
+          <td class="align-middle">
+            {{ item.Date_commande | date : 'medium':'fr' }}
+          </td>
+          <td class="align-middle">
+            @for (item1 of item.commercants; track $index) {
+            <span class="align-middle" id="comm-bloc">
+              {{ item1.numero_tel_commercant }}
+              <i class="bi bi-geo-alt-fill"></i> {{ item1.adresse_commercant }}
+              <br />
+            </span>
+
+            }
+          </td>
+          <td class="align-middle">
+            <span id="comm-bloc">
+
+              {{ item.client.numero_tel_client }}
+              <i class="bi bi-geo-alt-fill"></i>
+              {{ item.client.Adresse_Client }}
+            </span>
+          </td>
+          <!-- <td  class="align-middle">{{ item.etat }}</td> -->
+          <td class="align-middle">
+            <div class="form-element">
+              @if(item.Etat=="terminer"){
+
+              <select name="" id="" (change)="changerEtatCommande()" disabled>
+                <option>{{ item.Etat }}</option>
+              </select>
+              }@else{
+              <select name="" id="" (change)="changerEtatCommande()">
+                <option>{{ item.Etat }}</option>
+                <option>Terminée</option>
+              </select>
+              }
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    }
+  </div>
+</div>

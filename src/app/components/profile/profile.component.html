@@ -1,0 +1,85 @@
+<div class="container mt-3">
+  <div class="form-container">
+    <h5 class="fw-bold fs-4 text-center">Vos informations personnelles</h5>
+    <div class="d-flex justify-content-between px-4 w-100 form-left-container">
+      <div class="form-left">
+        <div class="form-element">
+          <label for="">Nom</label>
+          <input type="text" [(ngModel)]="nom" />
+        </div>
+        <div class="form-element">
+          <label for="">Naissance</label>
+          <input type="date" [(ngModel)]="naissance" />
+        </div>
+
+        <div class="form-element">
+          <label for="">Email</label>
+          <input type="text" [(ngModel)]="email" />
+        </div>
+        @if (whoIsOnline()=="commercant") {
+
+        <div class="form-element">
+          <label for="">NIN</label>
+          <input type="text" [(ngModel)]="nin" />
+        </div>
+        }
+        <div class="form-element flex-column">
+          <div class="d-flex justify-content-between">
+
+            <label for="">Nouveau Pass</label>
+            <div class="change-pass-bloc">
+
+              <input type="password" (input)="passeValidate()" id="passwordInput" style="width: 100%;" [(ngModel)]="pass" />
+              <i class="bi bi-eye"  (click)="showPassword()"></i>
+            </div>
+          </div>
+          <span class="span_validate" id="validationPasse"></span>
+        </div>
+      </div>
+
+      <div class="form-left mt-lg-0 mt-3">
+        <div class="form-element">
+          <label for="">Prenom</label>
+          <input type="text" [(ngModel)]="prenom" />
+        </div>
+        <div class="form-element">
+          <label for="">Genre</label>
+          <!-- <input type="text" > -->
+          <select name="" id="" [(ngModel)]="genre">
+            <option value="homme">Homme</option>
+            <option value="femme">Femme</option>
+          </select>
+        </div>
+        <div class="form-element">
+          <label for="">Telephone</label>
+          <input type="text" [(ngModel)]="numero" />
+        </div>
+        @if (whoIsOnline()=="commercant") {
+
+        <div class="form-element">
+          <label for="">NINEA</label>
+          <input type="text" [(ngModel)]="ninea" />
+        </div>
+        }
+        <div class="form-element flex-column">
+          <div class="d-flex justify-content-between">
+
+            <label for="">Confirm Pass</label>
+            <div class="change-pass-bloc">
+
+              <input type="password" (input)="isPassConforme()" [disabled]="!isConfirmInputAllowed" id="passwordInput" style="width: 100%;" [(ngModel)]="confirmPass" />
+              <i class="bi bi-eye"  (click)="showPassword()"></i>
+            </div>
+          </div>
+          <span class="span_validate" id="ConfirmPasseInput"></span>
+        </div>
+      </div>
+      <!-- <div class="form-image">
+        <img src="assets/login_image.png" alt="">
+      </div> -->
+    </div>
+    <div class="text-center w-100 mt-5">
+      <button class="btn" (click)="modification()">Modifier</button>
+    </div>
+  </div>
+</div>

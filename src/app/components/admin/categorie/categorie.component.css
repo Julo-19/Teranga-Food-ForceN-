@@ -1,0 +1,34 @@
+.categorie-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.categorie-container .left{
+  width: 60%;
+}
+.categorie-container .right{
+  width: 35%;
+}
+.categorie-container .right span{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.right input {
+  width: 100%;
+  border: none;
+  border-bottom: 2px var(--darkbluecolor) solid;
+  padding-left: 20px;
+  transition: 1s ease;
+}
+.right input:focus {
+  border-bottom: 5px var(--darkbluecolor) solid;
+}
+
+.right button {
+  background-color: var(--darkbluecolor);
+  color: white;
+  width: 50%;
+  padding: 0;
+  font-weight: bold;
+}

@@ -1,0 +1,36 @@
+<h4 class="adminTitle">Liste des inscrits à la newsletter</h4>
+<div class="container px-5 mt-5">
+  <div class="d-flex newsletter-bloc">
+    <div class="news-list">
+      <div class="data-table-container">
+
+        @if (listeInscrits.length>0) {
+
+          <table datatable [dtOptions]="dtOptions" class="table">
+            <thead id="thead">
+              <tr>
+                <th>Email</th>
+                <th class="last-th">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of listeInscrits; track $index) {
+              <tr>
+                <td>{{ item.email }}</td>
+                <td class="text-center"><button class="btn">Informer</button></td>
+              </tr>
+            }
+            </tbody>
+          </table>
+        }
+      </div>
+    </div>
+    <div class="news-text">
+
+      <textarea name=""  value="Saisir l'information" class="mb-2 p-3" [(ngModel)]="letter">
+
+      </textarea> <br>
+      <button class="btn"  (click)="informer()">Informer</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,182 @@
+.carousel-conain {
+  /* border: 10px white solid;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 5px; */
+}
+
+.accueil {
+  /* display: flex;
+  height: auto;
+  justify-content: space-between; */
+}
+.accueil h6 {
+  background-color: var(--darkbluecolor);
+  color: white;
+  /* font-weight: bold; */
+  text-align: center;
+  padding: 5px;
+}
+
+.accueil .accueil-left {
+  /* height: auto; */
+  background-color: white;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  width: 30%;
+}
+.accueil .accueil-right {
+  /* height: 600px; */
+  /* background-color: white; */
+  /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); */
+  width: 100%;
+}
+.accueil .accueil-right .bnr {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+.accueil .accueil-right .nouveaute {
+  margin-top: 20px;
+  height: auto;
+  /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); */
+}
+
+
+/* section description */
+.description {
+  background-color: var(--darkbluecolor);
+  color: white;
+  height: 180px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  /* padding-top: 2%; */
+  align-items: center;
+}
+.description .img-logo {
+  width: 22%;
+}
+.description p {
+  width: 60%;
+}
+.description .img-logo img {
+  height: 150px;
+  width: 80%;
+}
+
+/* section avantage */
+
+.avantage {
+  background-color: white;
+  color: var(--darkbluecolor);
+  height: auto;
+  margin-top: 20px;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* padding-top: 2%; */
+  align-items: center;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  padding-top: 10px;
+}
+
+.avantage span{
+  font-weight: bold;
+  height: 18px;
+}
+.avantage .avantage-gauche{
+  /* border-right: 2px var(--darkbluecolor) solid ; */
+  width: 50%;
+}
+.avantage .avantage-droite{
+  /* border-right: 2px var(--darkbluecolor) solid ; */
+  width: 50%;
+}
+
+
+/* cards */
+
+
+
+
+/* process banner */
+.processItems{
+  height: 120px;
+  /* background-color: black; */
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+.processItem{
+ width: 30%;
+ /* border: 1px white solid; */
+ display: flex;
+ align-items: center;
+ /* justify-content: space-between; */
+ padding-left: 5px;
+ padding-right: 5px;
+}
+.processItem img{
+  width: 40%;
+  height: 80%;
+}
+.processItem p{
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 10px;
+  color: var(--darkbluecolor);
+  line-height: 25px;
+}
+.processItem p span{
+  font-size: 15px;
+}
+
+
+
+/* responsive design */
+@media screen and (max-width:767px){
+  #card{
+    height: auto;
+  }
+
+  .processItems{
+    flex-direction: column;
+    height: auto;
+  }
+  .processItem{
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .description{
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+    text-align: justify;
+  }
+  .description p{
+    width: 100%;
+  }
+  .description .img-logo{
+    width: 55%;
+    text-align: center;
+  }
+
+  .avantage .avantage-container{
+    flex-direction: column;
+    text-align: justify;
+  }
+
+  .avantage .avantage-gauche{
+    /* border-right: 2px var(--darkbluecolor) solid ; */
+    width: 100%;
+  }
+  .avantage .avantage-droite{
+    /* border-right: 2px var(--darkbluecolor) solid ; */
+    width: 100%;
+  }
+
+
+  .processItem p{
+    font-size: 18px;
+
+  }
+
+}

@@ -1,0 +1,194 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --bgcolor: #4457ba;
+  --goldcolor: #ffd233;
+  --darkbluecolor: #E7272D;
+  /* --darkbluecolor: #252b42; */
+  --clearcolor: #242020;
+  --darkColor: #38343400;
+}
+
+i{
+  cursor: pointer;
+}
+/* i{
+ color: var(--goldcolor);
+} */
+
+.blue-title {
+  color: var(--bgcolor);
+  text-align: center;
+}
+
+/* cards and process baners for catalogue and accueil component  css */
+
+#card {
+  height: 300px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  /* border: 1px var(--goldcolor) solid; */
+  border-radius: 20px;
+  padding-top: 25px;
+  cursor: pointer;
+}
+#card .image {
+  height: 180px;
+  /* background-color: rebeccapurple; */
+  padding: 10px;
+}
+#card .card-text {
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+  text-align: center;
+}
+#card img {
+  height: 100%;
+  width: 90%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+#card h6 {
+  background-color: transparent;
+  color: var(--darkbluecolor);
+  text-align: start;
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+}
+#card span {
+  background-color: transparent;
+  color: var(--clearcolor);
+  text-align: start;
+  padding: 0;
+  margin: 0;
+}
+#card button {
+  background-color: var(--darkbluecolor);
+  color: white;
+  width: 80%;
+  padding: 0;
+  padding-bottom: 3px;
+  font-weight: bold;
+}
+
+/* titre */
+.section-title h4 {
+  color: var(--darkbluecolor);
+  height: 10px;
+  font-size: 20px;
+}
+.section-title hr {
+  color: var(--darkbluecolor);
+  opacity: 1;
+}
+
+/* pagination */
+/*
+.pagination {
+  width: 250px;
+  height: 40px;
+  margin: 0 auto;
+  background-color: var(--darkbluecolor);
+  margin-top: 20px;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+.pagination span {
+  background-color: white;
+  color: var(--darkbluecolor);
+  padding: 2px;
+  border-radius: 2px;
+}
+.pagination button {
+ background-color: transparent;
+ border: none;
+ color: white;
+} */
+
+.adminTitle{
+  text-align: center;
+  font-weight: 700;
+  color: var(--darkbluecolor);
+  margin-bottom: 30px;
+  letter-spacing: 5px;
+  margin-top: 30px;
+}
+
+
+
+thead#thead th
+{
+  background-color: #F0F0F0;
+  /* box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1); */
+}
+thead#thead th:nth-child(1)
+{
+  border-radius: 5px 0px 0px 5px;
+}
+thead#thead .last-th
+{
+  border-radius: 0px 5px 5px 0px;
+}
+
+
+@media screen and (max-width:767px){
+  #card button {
+   margin-bottom: 5px;
+  }
+
+
+}
+
+/* for input error */
+input.inputError
+{
+  border-bottom: 2px red solid !important;
+  width: 10%;
+  /* border-color: red; */
+}
+input.inputSuccess
+{
+  border-bottom: 2px rgb(71, 202, 71) solid !important;
+  /* width: 10%; */
+  /* border-color: red; */
+}
+
+/* validation */
+span.span_validate
+{
+  font-size: 12px;
+  display: none;
+  transition: ease 1.5s;
+}
+
+.error
+{
+  display: inline-block !important;
+  color: red !important;
+}
+.success
+{
+  display: inline-block !important;
+  color: rgb(45, 194, 77) !important;
+}
+
+
+/* for profile component */
+.change-pass-bloc
+{
+  display: flex;
+  width: 70%;
+}

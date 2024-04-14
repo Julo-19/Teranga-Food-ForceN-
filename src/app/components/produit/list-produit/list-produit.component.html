@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="d-flex justify-content-between">
+    <button class="btn mb-3" [routerLink]="['/addProduit']">
+      Ajouter un produit
+    </button>
+    <input
+      type="email"
+      class="form-control"
+      id="floatingInput"
+      placeholder="Rechercher"
+      [(ngModel)]="searchInput"
+    />
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    @for (item of getArticlesPage(); track $index) {
+
+    <div class="col">
+      <div class="card" id="card">
+        <div
+          class="text-center image"
+          [routerLink]="['/detailsProduit', item.id]"
+        >
+          <img src="{{urlBaseImage}}{{ item.image }}" alt=""  style="height: 150px;width: 90%;"/>
+        </div>
+        <div class="card-text">
+          <h6 class="text-center" [routerLink]="['/detailsProduit', item.id]">
+            {{ item.nom_produit }}
+          </h6>
+          <span class="text-center" [routerLink]="['/detailsProduit', item.id]"
+            >{{ item.prix }} fcfa</span
+          >
+          <div class="text-center d-flex justify-content-between w-50 px-3">
+            <i
+              class="bi bi-eye"
+              [routerLink]="['/detailsProduit', item.id]"
+            ></i>
+            <i
+              class="bi bi-pencil-square"
+              [routerLink]="['/editProduit', item.id]"
+            ></i>
+            <i class="bi bi-trash3-fill" (click)="suppression(item.id)"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  <div class="pagination">
+    <button
+      [disabled]="pageActuelle === 1"
+      (click)="pageActuelle = pageActuelle - 1"
+    >
+      Précedent
+    </button>
+    @for (page of pages; track $index) {
+
+    <span (click)="pageActuelle = page"> {{ page }}</span>
+    }
+    <button
+      [disabled]="pageActuelle === totalPages"
+      (click)="pageActuelle = pageActuelle + 1"
+    >
+      Suivant
+    </button>
+  </div>
+
+  @if (search().length==0) {
+  <div class="empty_img">
+    <img src="assets/empty_image.png" alt="" />
+  </div>
+  }
+</div>

@@ -1,0 +1,93 @@
+<div class="container mt-3">
+  <div class="form-container">
+    <!-- <h5 class="fw-bold fs-4 text-center">Inscription</h5> -->
+    @if (!displayForme) {
+    <h5 class="fw-bold fs-4 text-center">
+      Veuillez choisir votre type de profil, pour l'inscription
+    </h5>
+    <div class="button-choix">
+      <button class="btn" (click)="formTypeDisplay(true)">
+        Je suis Livreur
+      </button>
+      <button class="btn" (click)="formTypeDisplay(false)">
+        Je suis Utilisateur
+      </button>
+    </div>
+    } @if (displayForme) {
+    <h5 class="fw-bold fs-4 text-center">
+      Inscription en tant que @if (formType) {Vendeur}@else{Client}
+    </h5>
+
+    } @if (displayForme) {
+    <div class="d-flex justify-content-between px-4 w-100 form-left-container">
+      <div class="form-left">
+        <div class="form-element">
+          <label for="">Nom <span class="span_validate" id="validationNom"></span></label>
+          <input type="text" [(ngModel)]="nom" (input)="nomValidate()"/>
+        </div>
+        <div class="form-element">
+          <label for="">Naissance <span class="span_validate" id="validationNaissance"></span></label>
+          <input type="date" [(ngModel)]="naissance" id="inputDate"/>
+        </div>
+        <div class="form-element">
+          <label for="">Adresse <span class="span_validate" id="validationAdresse"></span></label>
+          <input type="text" [(ngModel)]="adresse" (input)="adresseValidate()"/>
+        </div>
+        <div class="form-element">
+          <label for="">Email <span class="span_validate" id="validationEmail"></span></label>
+          <input type="text" [(ngModel)]="email" (input)="emailValidate()"/>
+        </div>
+        @if (formType) {
+
+        <div class="form-element">
+          <label for="">NIN <span class="span_validate" id="validationNIN"></span></label>
+          <input type="text" [(ngModel)]="nin" (input)="ninValidate()"/>
+        </div>
+        }
+      </div>
+
+      <div class="form-left mt-3 mt-lg-0">
+        <div class="form-element">
+          <label for="">Prenom <span class="span_validate" id="validationPrenom"></span></label>
+          <input type="text" [(ngModel)]="prenom"  (input)="prenomValidate()"/>
+        </div>
+        <div class="form-element">
+          <label for="">Genre <span class="span_validate" id="validationGenre"></span></label>
+          <select name="" id="" [(ngModel)]="genre" (change)="genreValidate()">
+            <option value="homme">Homme</option>
+            <option value="femme">Femme</option>
+          </select>
+        </div>
+        <div class="form-element">
+          <label for="">Tel <span class="span_validate" id="validationTelephone"></span></label>
+          <input type="text" [(ngModel)]="numero" (input)="telephoneValidate()" />
+        </div>
+        @if (formType) {
+
+        <div class="form-element">
+          <label for="">NINEA <span class="span_validate" id="validationNinea"></span></label>
+          <input type="text" [(ngModel)]="ninea" (input)="nineaValidate()"/>
+        </div>
+        }
+        <div class="form-element">
+          <label for="">Passe <span class="span_validate" id="validationPasse"></span></label>
+          <div class="d-flex justify-content-center w-75">
+
+            <input type="password" id="passwordInput" [(ngModel)]="pass" (input)="passeValidate()" style="width: 80%;" />
+            <i class="bi bi-eye"  (click)="showPassword()"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center w-100 mt-5">
+      <i class="bi bi-arrow-return-left" (click)="getBackChoice()"></i>
+      @if (formType) {
+        <button class="btn" (click)="inscription('api/registerCommercant')" [disabled]="truthyTab.length<9">Inscription</button>
+      }@else {
+        <button class="btn" (click)="inscription('api/registerClient')" [disabled]="truthyTab.length<7">Inscription</button>
+
+      }
+    </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<h4 class="adminTitle">Liste des categories</h4>
+
+<div class="container px-5 mt-5">
+  <div class="categorie-container">
+    <div class="left">
+      @if (categories.length>0) {
+
+      <table datatable [dtOptions]="dtOptions" class="table">
+        <thead id="thead">
+          <tr>
+            <th>Nom</th>
+            <th>Quantité</th>
+            <th class="last-th">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of categories; track $index) {
+          <tr>
+            <td>{{ item.nom_categorie }}</td>
+            <td>{{item.nombre_produits}}</td>
+            <td class="text-center"><i class="bi bi-eye"></i></td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      }
+    </div>
+    <div class="right">
+      <span>Ajouter une nouvelle catégorie </span>
+      <div class="form-element mt-4">
+        <label for="">Nom de la catégorie</label>
+        <input type="text" placeholder="Nom de la catégorie" [(ngModel)]="categorie">
+      </div>
+      <button class="btn mt-3" (click)="envoyer()">Ajouter</button>
+    </div>
+  </div>
+</div>

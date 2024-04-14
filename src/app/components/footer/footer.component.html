@@ -1,0 +1,21 @@
+<footer>
+  <div class="footer-left">
+    <img src="assets/panierLocal-logo.png" alt="">
+  </div>
+  <div class="footer-right">
+    <div class="newsletter">
+      <span>Inscrivez-vous à la newsletter</span> <span class="mx-1 span_validate" id="validationEmail"></span>
+      <div class="d-flex justify-content-between pt-lg-1">
+        <input type="email" class="form-control" id="exampleFormControlInput1" (input)="emailValidate()" [(ngModel)]="email" placeholder="Saisissez votre email">
+       <button class="btn " (click)="newsletterSubscribe()" [disabled]="emailError">S'inscrire</button>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a [routerLink]="['/conditionUtilisation']"><i class="bi bi-link" ></i>Condtitons d'utilisation</a>
+      <a [routerLink]="['/confidentialiteSecurite']"><i class="bi bi-link" ></i>Confidentialité et sécurité</a>
+      <a [routerLink]="['/accueil']"><i class="bi bi-link"></i>Accueil</a>
+      <a [routerLink]="['/catalogue']"><i class="bi bi-link"></i>Catalogue</a>
+      <a [routerLink]="['/contact']"><i class="bi bi-link"></i>Contact</a>
+    </div>
+  </div>
+</footer>

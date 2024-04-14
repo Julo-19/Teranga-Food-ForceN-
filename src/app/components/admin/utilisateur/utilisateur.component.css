@@ -1,0 +1,28 @@
+.data-table-container{
+
+}
+
+
+
+
+thead#thead th
+{
+  background-color: #F0F0F0;
+  /* box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1); */
+  font-weight: 600;
+}
+thead#thead th:nth-child(1)
+{
+  border-radius: 5px 0px 0px 5px;
+}
+thead#thead th:nth-child(6)
+{
+  border-radius: 0px 5px 5px 0px;
+}
+button.btn{
+  width: 100%;
+  background-color: var(--darkbluecolor);
+  color: white;
+  font-weight: bold;
+
+}

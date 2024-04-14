@@ -1,0 +1,59 @@
+<h4 class="adminTitle">Liste des feedbacks</h4>
+<div class="container px-5 mt-5">
+  @if (feedbacks.length>0) {
+
+  <table datatable [dtOptions]="dtOptions" class="table">
+    <thead id="thead">
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Numero</th>
+        <th class="last-th">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of feedbacks; track $index) {
+      <tr>
+        <td>{{ item.nom }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.numero_tel }}</td>
+        <td class="text-center"><i class="bi bi-eye" data-bs-toggle="modal" data-bs-target="#detailsFeedback" (click)="detailsFeedback(item.id)"></i></td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  }
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="detailsFeedback" data-bs-backdrop="static" tabindex="-1" aria-labelledby="detailsFeedbackLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered  p-0 modal-lg">
+    <div class="modal-content m-0 px-3 form-container">
+      <!-- <div class="form-container px-5"> -->
+        <h5 class="fw-bold fs-4 mt-4 text-center mb-3">Feedback</h5>
+        <div class="d-flex justify-content-between w-100">
+          <div class="w-25">
+            <span class="mx-2">Nom: {{details.nom}}</span> <br>
+            <span class="mx-2">Tel: {{details.numero}}</span> <br>
+            <span class="mx-2">Email:{{details.email}}</span> <br>
+          </div>
+          <div class="message">
+            <p>Message: <br>
+              <span>
+                {{details.message}}
+              </span>
+            </p>
+          </div>
+        </div>
+        <div class="reponse">
+          <label for="">Reponse</label>
+          <textarea name="" class="p-2" [(ngModel)]="reponse"></textarea>
+        </div>
+        <div class="d-flex justify-content-end w-100 mt-3 mb-3">
+          <button class="btn w-25" data-bs-dismiss="modal" aria-label="Close" #closeAddExpenseModal>Fermer</button>
+          <button class="btn w-25 mx-3" (click)="repondreFeedback()">Repondre</button>
+        </div>
+    </div>
+  </div>
+</div>

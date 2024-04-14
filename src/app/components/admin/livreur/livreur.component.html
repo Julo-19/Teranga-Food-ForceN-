@@ -1,0 +1,101 @@
+<h4 class="adminTitle">Liste des livreurs</h4>
+<div class="data-table-container px-5">
+  <button class="btn p-1" data-bs-toggle="modal" data-bs-target="#ajoutLivreurModal">Ajouter un livreur</button>
+
+  @if (livreurs.length>0) {
+
+    <table datatable [dtOptions]="dtOptions" class="table">
+      <thead id="thead">
+        <tr>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Numero</th>
+          <th>Adresse</th>
+          <th>Etat</th>
+          <th class="last-th">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of livreurs; track $index) {
+        <tr>
+          <td>{{ item.Nom }}</td>
+          <td>{{ item.Email }}</td>
+          <td>{{ item.Numero }}</td>
+          <td>{{ item.Adresse }}</td>
+          <td>{{ item.statut }}</td>
+          <td class="text-center"><i class="bi bi-eye"></i></td>
+        </tr>
+      }
+      </tbody>
+    </table>
+  }
+</div>
+
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ajoutLivreurModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="ajoutLivreurModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="ajoutLivreurModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered  p-0 modal-lg">
+    <div class="modal-content m-0 p-0 form-container">
+      <!-- <div class="form-container px-5"> -->
+        <h5 class="fw-bold fs-4 mt-4">Ajout d'un livreur</h5>
+        <div class="d-flex justify-content-evenly  align-items-center w-100">
+
+          <div class="form-left">
+            <div class="form-element">
+              <label for="">Nom</label>
+              <input type="text" [(ngModel)]="livreur.nom" >
+            </div>
+            <div class="form-element">
+              <label for="">Prenom</label>
+              <input type="text" [(ngModel)]="livreur.prenom" >
+            </div>
+            <div class="form-element">
+              <label for="">Numero</label>
+              <input type="text" [(ngModel)]="livreur.numero_tel" >
+            </div>
+            <div class="form-element">
+              <label for="">Genre</label>
+              <select name="" id="" [(ngModel)]="livreur.genre">
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+              </select>
+            </div>
+            <div class="form-element">
+              <label for="">Naissance</label>
+              <input type="date" [(ngModel)]="livreur.date_naiss">
+            </div>
+            <div class="form-element">
+              <label for="">Adresse</label>
+              <input type="text" [(ngModel)]="livreur.adresse">
+            </div>
+            <div class="form-element">
+              <label for="">Email</label>
+              <input type="text" [(ngModel)]="livreur.email">
+            </div>
+            <div class="form-element">
+              <label for="">Matricule</label>
+              <input type="text" [(ngModel)]="livreur.matricule">
+            </div>
+
+          </div>
+          <div class="form-image">
+            <img src="assets/addLivreur_image.png" alt="">
+          </div>
+        </div>
+        <div class="d-flex justify-content-between w-50 m-auto">
+          <button class="btn" data-bs-dismiss="modal" aria-label="Close" #closeAddExpenseModal>Annuler</button>
+          <button class="btn" (click)="AjouterLivreur()">Ajouter</button>
+        </div>
+      <!-- </div> -->
+      <!-- <div class="modal-footer w-75 m-auto d-flex justify-content-between" >
+        <button type="button" class="btn btn-style" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-style">Ajouter</button>
+      </div> -->
+    </div>
+  </div>
+</div>

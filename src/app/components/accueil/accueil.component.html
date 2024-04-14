@@ -1,0 +1,198 @@
+<div
+  id="carouselExampleSlidesOnly"
+  class="carousel slide carousel-conain"
+  data-bs-ride="carousel"
+  id=""
+>
+  <div class="carousel-inner">
+    <div class="carousel-item active" style="position: relative;">
+      <img src="assets/baniere.png" class="d-block w-100" alt="..." style="height: 640px;" />
+      <h1 
+      style="position: absolute; top: 30%; left: 0;
+       transform: translateY(-50%); text-align: start; 
+       padding: 0 20px; color: #E7272D;
+       font-size: 150px;
+       margin-bottom: 55px;
+       font-family: Water Brush, cursive;
+       font-weight: bolder;
+       text-align: center;
+       line-height: 100px;
+      ">Un gout de <br> 
+      <span style="font-size: 70px;
+      color: black;
+      font-family: Arial, Helvetica, sans-serif;"
+  
+      >LEGENDE</span></h1>
+
+      <button  
+      style="position: absolute; 
+      top: 60%; left: 13%;
+      transform: translateY(-50%);
+       text-align: start; 
+       border: none;
+       background-color: #0B960F;
+       color: #fff;
+       padding: 15px;
+       width: 10%;
+       border-radius: 10px;
+       ">EN SAVOIR PLUS</button>
+    </div>
+    
+    
+    <!-- <div class="carousel-item">
+      <img src="assets/banner2.png" class="d-block w-100" alt="..." />
+    </div>
+    <div class="carousel-item">
+      <img src="assets/banner3.png" class="d-block w-100" alt="..." />
+    </div> -->
+  </div>
+</div>
+<div class="container mt-3">
+  <div class="accueil mb-5">
+    <!-- <div class="accueil-left"> <h6>MEILLEURE VENTE DE LA SEMAINE</h6> </div> -->
+    <div class="accueil-right">
+      <!-- <div class="bnr">
+        <img
+          src="assets/bnr.png"
+          class="img-fluid"
+          alt=""
+          style="width: 100%"
+        />
+      </div> -->
+      <!-- <div class="processItems">
+        <div class="processItem">
+          <img src="assets/process1.png" alt="" />
+          <p>
+            Je commande <br />
+            <span>Depuis chez moi</span>
+          </p>
+        </div>
+        <div class="processItem">
+          <img src="assets/process2.png" alt="" />
+          <p>
+            On me livre <br />
+            <span>En un temps record</span>
+          </p>
+        </div>
+        <div class="processItem">
+          <img src="assets/process3.png" alt="" />
+          <p>
+            Je déguste <br />
+            <span>Avec satisfaction</span>
+          </p>
+        </div>
+      </div> -->
+      <div class="nouveaute">
+        <div class="section-title">
+          <h4>PRODUITS POPULAIRES</h4>
+          <hr />
+        </div>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          @for (item of  produits.slice(0,8); track $index) {
+
+            <div class="col" >
+              <div class="card" id="card">
+                <div class="text-center image" [routerLink]="['/detailsProduit',item.id]">
+                  <img src="{{urlBaseImage}}{{item.image}}" alt="" />
+                </div>
+                <div class="card-text">
+                  <h6 class="text-center" [routerLink]="['/detailsProduit',item.id]">{{item.nom_produit}}</h6>
+                  <span class="text-center" [routerLink]="['/detailsProduit',item.id]">{{item.prix}} fcfa</span>
+                  <div class="text-center">
+                    <button class="btn" (click)="postPanier(item)">Ajouter au panier</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+
+        </div>
+        <!-- <div class="pagination">
+          <span>Précedent</span>
+          <span>1</span>
+          <span>2</span>
+          <span>Suivant</span>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- section meilleure ventre  -->
+  <div class="section-title">
+    <h4>MEILLEURES VENTES DE LA SEMAINE</h4>
+    <hr />
+  </div>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    @for (item of  produits.slice(10,14); track $index) {
+
+      <div class="col" >
+        <div class="card" id="card">
+          <div class="text-center image" [routerLink]="['/detailsProduit',item.id]">
+            <img src="{{urlBaseImage}}{{item.image}}" alt=""  style="height: 150px;width: 90%;" />
+          </div>
+          <div class="card-text">
+            <h6 class="text-center" [routerLink]="['/detailsProduit',item.id]">{{item.nom_produit}}</h6>
+            <span class="text-center" [routerLink]="['/detailsProduit',item.id]">{{item.prix}} fcfa</span>
+            <div class="text-center">
+              <button class="btn" (click)="postPanier(item)">Ajouter au panier</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+
+  </div>
+  <!-- section desccription -->
+  <div class="description">
+    <div class="img-logo">
+      <img src="assets/panierLocal-logo.png" alt=""  style="height: 150px;width: 90%;" />
+    </div>
+    <p>
+      Bienvenue dans le marché en ligne dédié aux produits locaux alimentaires!
+      Trouvez aisément des délices authentiques tout en permettant aux
+      commerçants de prospérer. Explorez une variété de saveurs locales et
+      soutenez les producteurs de votre région. Faites de chaque achat une
+      expérience locale et connectée
+    </p>
+  </div>
+
+  <!-- section avantage -->
+  <div class="avantage">
+    <h6 class="blue-title">AVANTAGES POUR CONSOMMATEURS ET COMMERÇANTS</h6>
+    <div class="d-flex justify-content-center avantage-container">
+      <div class="avantage-gauche  p-3">
+        <p>
+          <span>Authenticité :</span>
+          Découvrez les saveurs locales authentiques et unqiues. <br />
+          <br />
+        </p>
+        <p>
+          <span>Facilité de recherche : </span>
+          Trouvez facilement des produits locaux grâce à une navigation
+          conviviale
+        </p>
+        <p>
+          <span>Confort de l'achat en ligne : </span>
+          Commandez depuis chez vous avec une livraison pratique
+        </p>
+      </div>
+      <div class="avantage-droite  p-3">
+        <p>
+          <span>Elargissement du public : </span>
+          Atteignez un public plus large au-dela de votre emplacement physique
+        </p>
+        <p>
+          <span>Accès facile aux consommateurs : </span>
+          Connectez-vous directement avec des consommateurs avides de produits
+          locaux
+        </p>
+        <p>
+          <span>Visibilité continue : </span>
+          Restez visible 24/7, permettant au client de découvrir et d’acheter à
+          tout moment
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

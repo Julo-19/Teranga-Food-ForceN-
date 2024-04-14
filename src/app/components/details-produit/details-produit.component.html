@@ -1,0 +1,293 @@
+<div class="container mt-5">
+  <div class="produit-container mb-5">
+    <div class="produit-left">
+      <img src="{{urlBaseImage}}{{ produit.image }}" alt="" />
+    </div>
+    <div class="produit-right p-2">
+      <h5>{{ produit.nom_produit }}</h5>
+      <!-- top  -->
+      <div class="d-flex justify-content-between w-75" id="interactProduct">
+        <img src="{{urlBaseImage}}{{ produit.image }}" id="imageReponsive" alt="">
+        <span>
+          Avis :
+          @for (nombre of [1,2,3,4,5]; track $index) {
+            @if (nombre<=moyenneNote) {
+              <i class="bi bi-star-fill mx-1"></i>
+            }@else {
+              <i class="bi bi-star mx-1"></i>
+            }
+          }
+          <!-- <i class="bi bi-star mx-1"></i>
+          <i class="bi bi-star mx-1"></i>
+          <i class="bi bi-star mx-1"></i>
+          <i class="bi bi-star mx-1"></i>
+          <i class="bi bi-star mx-1"></i> -->
+        </span>
+        <span data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="bi bi-pen-fill"></i>
+          Ecrire un avis
+        </span>
+        <span data-bs-toggle="modal" data-bs-target="#SignalModal">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              d="M12 17q.425 0 .713-.288T13 16q0-.425-.288-.712T12 15q-.425 0-.712.288T11 16q0 .425.288.713T12 17m-1-4h2V7h-2zm-2.75 8L3 15.75v-7.5L8.25 3h7.5L21 8.25v7.5L15.75 21z"
+            />
+          </svg>
+          Signaler
+        </span>
+      </div>
+      <div class="d-flex justify-content-between w-75 mt-2" id="infoVendeur">
+        <p>
+          Disponibilité :
+          <span>En stock({{ produit.quantite }})</span>
+        </p>
+        <p>
+          Vendeur :
+          <span>{{ produit.commercant }}</span>
+        </p>
+        <p>
+          Portable :
+          <span>{{ produit.numero_tel }}</span>
+        </p>
+      </div>
+      <!-- description  -->
+      <hr />
+      <p class="description">
+        {{ produit.description }}
+      </p>
+      <hr />
+      <h5>{{ produit.prix }} fcfa</h5>
+      <!-- @if (produit.id) {
+
+      } -->
+      <p>
+        Quantité :
+        <!-- <i class="bi bi-plus quant" ></i> -->
+        <i class="bi bi-caret-down-fill" (click)="upOrDownQuantity('down')"></i>
+        <input type="text" [value]="quantite" />
+        <i class="bi bi-caret-up-fill" (click)="upOrDownQuantity('up')"></i>
+      </p>
+      <div class="d-flex justify-content-between " id="actionButton">
+        <button class="btn" (click)="postPanier(produit,quantite)">
+          Ajouter au panier
+        </button>
+        <button class="btn" [routerLink]="['/panier']">Commander</button>
+      </div>
+    </div>
+  </div>
+  <div class="tabs-contanier">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <div class="m-auto d-flex">
+          <button
+            class="nav-link active"
+            id="nav-home-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-home"
+            type="button"
+            role="tab"
+            aria-controls="nav-home"
+            aria-selected="true"
+          >
+            Liste des Avis
+          </button>
+          <button
+            class="nav-link"
+            id="nav-profile-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-profile"
+            type="button"
+            role="tab"
+            aria-controls="nav-profile"
+            aria-selected="false"
+          >
+            Produits Similaires
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div
+        class="tab-pane fade show active mx-lg-5 mx-1"
+        id="nav-home"
+        role="tabpanel"
+        aria-labelledby="nav-home-tab"
+        tabindex="0"
+      >
+        <div class="avis-items gap-2 p-2">
+
+          @if (commentaires.length==0) {
+            <div class="m-auto text-center">
+              <img src="assets/empty_image.png" class="img-fluid" alt="" style="height: 250px;width: 250px;">
+              <h5 class="text-center">Pas d'avis pour le moment,soyez le premier à en faire</h5>
+            </div>
+          }
+          @for (item of commentaires; track $index) {
+            <div class="avis-item p-lg-2 p-1">
+              <div class="d-flex justify-content-between m-auto mt-2 mb-2">
+                @for (nombre of [1,2,3,4,5]; track $index) {
+                  @if (nombre<=item.Note) {
+                    <i class="bi bi-star-fill"></i>
+                  }@else {
+                    <i class="bi bi-star"></i>
+                  }
+                }
+
+              </div>
+              <span class="fw-bold mt-3 mb-3">{{item.Client}}</span>
+              <p>
+                {{item.Commentaires}}
+              </p>
+            </div>
+          }
+
+
+        </div>
+      </div>
+      <div
+        class="tab-pane fade mx-lg-5 mx-1"
+        id="nav-profile"
+        role="tabpanel"
+        aria-labelledby="nav-profile-tab"
+        tabindex="0"
+      >
+
+      @if (produitSimilaires.length==0) {
+        <div class="m-auto text-center">
+          <img src="assets/empty_image.png" class="img-fluid" alt="" style="height: 250px;width: 250px;">
+          <h5 class="text-center">Pas de produits similaires pour le moment</h5>
+        </div>
+      }
+        <div class="row row-cols-2 row-cols-md-4 g-4 mt-1 similaire-items">
+          @for (item of produitSimilaires.slice(0,4); track $index) {
+
+            <div class="col" [routerLink]="['/detailsProduit',item.id]" (click)="initSimilaire(item.id)">
+              <div class="card" id="card">
+                <div class="text-center image">
+                  <img src="{{urlBaseImage}}{{item.image}}" alt="" />
+                </div>
+                <div class="card-text">
+                  <h6 class="text-center">{{item.nom_produit}}</h6>
+                  <span class="text-center">{{item.prix}} fcfa</span>
+                  <div class="text-center">
+                    <button class="btn" (click)="postPanier(item)">Ajouter au panier</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- popup avis-->
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  data-bs-backdrop='static'
+>
+  <div class="modal-dialog modal-dialog-centered " >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 m-auto" id="exampleModalLabel">
+          Ecrivez un avis
+        </h1>
+      </div>
+      <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      <div class="modal-body">
+        <div class="d-flex w-50 justify-content-between mb-2">
+          <span>La note : </span>
+          <div class="w-50 d-flex justify-content-between">
+            <i class="bi bi-star" id="star" (click)="noteStar(1)"></i>
+            <i class="bi bi-star" id="star" (click)="noteStar(2)"></i>
+            <i class="bi bi-star" id="star" (click)="noteStar(3)"></i>
+            <i class="bi bi-star" id="star" (click)="noteStar(4)"></i>
+            <i class="bi bi-star" id="star" (click)="noteStar(5)"></i>
+          </div>
+        </div>
+        <div class="d-flex w-100 justify-content-between mb-2">
+          <span>Avis : </span>
+          <textarea name="" id="" [(ngModel)]="commentaire"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            #closeAddExpenseModal
+          >
+            Annuler
+          </button>
+          <button type="button" class="btn" (click)="envoyerAvis()">Envoyer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- popup signalement-->
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="SignalModal"
+  tabindex="-1"
+  aria-labelledby="SignalModalLabel"
+  aria-hidden="true"
+  data-bs-backdrop='static'
+>
+  <div class="modal-dialog modal-dialog-centered " >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 m-auto" id="SignalModalLabel">
+          Faire un signalement
+        </h1>
+      </div>
+      <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      <div class="modal-body">
+
+        <div class="d-flex w-100 justify-content-between mb-2">
+          <span>Motif : </span>
+          <textarea name="" id="" [(ngModel)]="commentaire"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            #closeAddExpenseModalSignalement
+          >
+            Annuler
+          </button>
+          <button type="button" class="btn" (click)="envoyerSignalement()">Envoyer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

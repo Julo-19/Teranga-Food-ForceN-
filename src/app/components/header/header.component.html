@@ -1,0 +1,159 @@
+<nav class="navbar navbar-expand-lg fixed-top" id="nav">
+  <div class="container-fluid">
+    <a class="navbar-brand" id="logo"><img src="assets/logo.png" alt="" /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        @for (item of navLinks; track $index) {
+
+        <li class="nav-item fw-bold mx-3">
+          @if (item.path=="panier") {
+
+          <a
+            class="nav-link active text-dark"
+            aria-current="page"
+            routerLinkActive="active-link"
+            [routerLink]="[item.path]"
+            id="linkItem"
+          >
+            <i class="{{ item.icon }}"></i> {{ item.name }}
+            {{ panierItemNumber }}</a
+          >
+          }@else {
+
+          <a
+            class="nav-link active text-dark"
+            aria-current="page"
+            routerLinkActive="active-link"
+            [routerLink]="[item.path]"
+            id="linkItem"
+          >
+            <i class="{{ item.icon }}"></i> {{ item.name }}</a
+          >
+          }
+        </li>
+        }
+        <div class="sidebar-reponsive">
+          @if (isOnline()) { @if (whoIsOnline()=="commercant") {
+
+          <li class="nav-item fw-bold mx-3">
+            <a
+              class="nav-link active text-dark"
+              aria-current="page"
+              routerLinkActive="active-link"
+              [routerLink]="['/listVente']"
+              id="linkItem"
+            >
+              <i class="bi bi-bag-fill"></i>
+              Mes ventes
+            </a>
+          </li>
+          <li class="nav-item fw-bold mx-3">
+            <a
+              class="nav-link active text-dark"
+              aria-current="page"
+              routerLinkActive="active-link"
+              [routerLink]="['/listProduit']"
+              id="linkItem"
+            >
+              <i class="bi bi-tags"></i>
+              Mes produits
+            </a>
+          </li>
+          }
+          <li class="nav-item fw-bold mx-3">
+            <a
+              class="nav-link active text-white"
+              aria-current="page"
+              routerLinkActive="active-link"
+              [routerLink]="['/profile']"
+              id="linkItem"
+            >
+              <i class="bi bi-person-check"></i>
+              Mon profile
+            </a>
+          </li>
+          <li class="nav-item fw-bold mx-3">
+            <a
+              class="nav-link active text-white"
+              aria-current="page"
+              routerLinkActive="active-link"
+              [routerLink]="['/adresse']"
+              id="linkItem"
+            >
+              <i class="bi bi-geo-alt-fill"></i>
+              Mon adresse
+            </a>
+          </li>
+          @if (whoIsOnline()=="client") {
+          <li class="nav-item fw-bold mx-3">
+            <a
+              class="nav-link active text-white"
+`              aria-current="page"
+              routerLinkActive="active-link"
+              [routerLink]="['/commande']"
+              id="linkItem"
+            >
+              <i class="bi bi-basket"></i>
+              Mes commandes
+            </a>
+          </li>
+          } @if (whoIsOnline()=="livreur") {
+          <li class="nav-item fw-bold mx-3">
+            <a
+              class="nav-link active text-white"
+              aria-current="page"
+              routerLinkActive="active-link"
+              [routerLink]="['/livraisonLivreur']"
+              id="linkItem"
+            >
+              <i class="bi bi-truck"></i>
+              Mes livraisons
+            </a>
+          </li>
+          } }
+        </div>
+        <li class="nav-item dropdown mt-1" id="dropdown">
+          <a
+            class="nav-link dropdown-toggle text-center"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="bi bi-person-circle"></i> Compte
+          </a>
+          <ul class="dropdown-menu">
+            @if (isOnline()==null) {
+            <li>
+              <a class="dropdown-item" routerLink="connexion">Se connecter</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="inscription">S'inscrire</a>
+            </li>
+            }@else {
+            <li>
+              <a class="dropdown-item" (click)="deconnexion()"
+                >Se déconnecter</a
+              >
+            </li>
+            }
+          </ul>
+        </li>
+      </ul>
+      <!-- <ul class="navbar-nav mb-2 mb-lg-0"> -->
+      <!-- </ul> -->
+    </div>
+  </div>
+</nav>
+
+<div class="separateur"></div>

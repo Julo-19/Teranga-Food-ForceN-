@@ -1,0 +1,23 @@
+button.btn{
+  width: 48%;
+  background-color: var(--darkbluecolor);
+  color: white;
+  font-weight: bold;
+}
+
+
+i{
+  cursor: pointer;
+}
+
+select {
+  width: 200px;
+  /* border-bottom: 2px var(--darkbluecolor) solid; */
+  background-color: var(--darkbluecolor);
+  /* padding-left: 20px; */
+  /* transition: 1s ease; */
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 5px;
+}

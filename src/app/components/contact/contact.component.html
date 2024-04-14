@@ -1,0 +1,32 @@
+<div class="container mt-3">
+  <div class="form-container px-lg-5 px-1">
+    <h5 class="fw-bold fs-4">Laissez-nous un message</h5>
+    <div class="d-flex justify-content-center align-items-center form-container-element">
+
+      <div class="form-left">
+        <div class="form-element">
+          <label for="">Nom <span class="span_validate" id="validationNom"></span></label>
+          <input type="text" [(ngModel)]="nom" (input)="nomValidate()"/>
+        </div>
+        <div class="form-element">
+          <label for="">Email <span class="span_validate" id="validationEmail"></span></label>
+          <input type="email" [(ngModel)]="email" (input)="emailValidate()"/>
+        </div>
+        <div class="form-element">
+          <label for="">Numero <span class="span_validate" id="validationTelephone"></span></label>
+          <input type="text" [(ngModel)]="numero" (input)="telephoneValidate()"/>
+        </div>
+        <div class="form-element">
+          <label for="">Message <span class="span_validate" id="validationMessage"></span></label>
+          <input type="text" [(ngModel)]="message" (input)="messageValidate()"/>
+        </div>
+      </div>
+      <div class="form-image">
+        <img src="assets/image_contact.png" alt="">
+      </div>
+    </div>
+    <div class="text-center w-100">
+      <button class="btn" (click)="envoyer()" [disabled]="truthyTab.length<4">Envoyer</button>
+    </div>
+  </div>
+</div>

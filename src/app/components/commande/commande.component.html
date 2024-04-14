@@ -1,0 +1,91 @@
+<div class="panier-left p-2">
+  <div class="section-title">
+    <h4>Historiques des commandes</h4>
+    <hr />
+  </div>
+  <div class="table-responsive">
+    @if (commandes.length>0) {
+
+    <table datatable [dtOptions]="dtOptions" class="table">
+      <thead id="thead">
+        <tr>
+          <th>Date</th>
+          <th>Articles</th>
+          <th>Montant</th>
+          <th>Livraison</th>
+          <th class="last-th">Paiment</th>
+          <th class="last-th">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of commandes; track $index) {
+        <tr>
+          <td>{{ item.date_commande | date : 'medium':'fr' }}</td>
+          <td>{{ item.nombre_articles }}</td>
+          <td>{{ item.montant_total }}</td>
+          <td>{{ item.etat_commande }}</td>
+          <td>
+            <img
+            src="https://pbs.twimg.com/profile_images/1416037687128113160/O5-WNBK6_400x400.jpg"
+            alt=""
+            />
+          </td>
+          <td>
+            <i
+            class="bi bi-eye"
+            data-bs-toggle="modal"
+            data-bs-target="#detailsCommande"
+            (click)="showVente(item.Id)"
+          ></i>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    }
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="detailsCommande"
+  data-bs-backdrop="static"
+  tabindex="-1"
+  aria-labelledby="detailsCommandeLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered p-0 modal-lg">
+    <div class="modal-content m-0 px-3 form-container">
+      <!-- <div class="form-container px-5"> -->
+      <h5 class="fw-bold fs-4 mt-4 text-center mb-3">Produits commandés</h5>
+      <!-- <div class="d-flex justify-content-evenly w-100"></div> -->
+      <div class="row row-cols-2 row-cols-md-3 g-4">
+        @for (item of produitCommandes; track $index) {
+
+          <div class="col" data-bs-dismiss="modal">
+            <div class="card" id="card">
+              <div class="text-center image"  [routerLink]="['/detailsProduit',item.produit_id]">
+                <img src="{{urlBaseImage}}{{item.image}}" alt=""  style="height: 150px;width: 90%;" />
+              </div>
+              <div class="card-text">
+                <h6 class="text-center" [routerLink]="['/detailsProduit',item.produit_id]" >{{item.nom_produit}}</h6>
+                <!-- <div class="text-center">
+                  <button class="btn" (click)="postPanier(item)">Ajouter au panier</button>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        }
+
+
+      </div>
+      <div class="d-flex justify-content-end w-100 mt-3 mb-3">
+        <button class="btn w-25" data-bs-dismiss="modal" aria-label="Close">
+          Fermer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

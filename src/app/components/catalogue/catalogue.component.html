@@ -1,0 +1,138 @@
+<div class="container mt-3">
+  <div class="catalogue-container">
+    <div class="catalogue-left">
+      <div class="categorie">
+        <h6 class="text-center pt-3 fw-bold">CATEGORIES</h6>
+        <div class="p-lg-4" id="categorieElement">
+          <span (click)="loadAllProducts()">Tout</span>
+          @for (item of categories; track $index) {
+          <span (click)="getProductByCategorie(item.id, item.nom_categorie)">{{
+            item.nom_categorie
+          }}</span>
+          }
+        </div>
+
+        <select
+          name=""
+          id="selectCategorie"
+          (click)="getProductByCategorieSelect($event)"
+        >
+          <option value="tout">Tout</option>
+          @for (item of categories; track $index) {
+          <option [value]="item.id">
+            {{ item.nom_categorie }}
+          </option>
+          }
+        </select>
+      </div>
+      <div class="recherche px-3">
+        <h6 class="text-center pt-3 fw-bold">RECHERCHE ET FILTRE</h6>
+        <div class="form-floating">
+          <input
+            type="email"
+            class="form-control"
+            id="floatingInput"
+            [(ngModel)]="searchInput"
+          />
+          <label for="floatingInput">Rechercher</label>
+        </div>
+        <hr />
+        <div class="col-md">
+          <div class="form-floating">
+            <select class="form-select" id="floatingSelectGrid" (change)="filtrePrix($event)">
+              <option value="normal" selected>Normal</option>
+              <option value="asc">Croissant</option>
+              <option value="desc">Décroissant</option>
+            </select>
+            <label for="floatingSelectGrid">Filtrer par prix</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="catalogue-right">
+      <div class="processItems">
+        <div class="processItem">
+          <img src="assets/process1.png" alt="" />
+          <p>
+            Je commande <br />
+            <span>Depuis chez moi</span>
+          </p>
+        </div>
+        <div class="processItem">
+          <img src="assets/process2.png" alt="" />
+          <p>
+            On me livre <br />
+            <span>En un temps record</span>
+          </p>
+        </div>
+        <div class="processItem">
+          <img src="assets/process3.png" alt="" />
+          <p>
+            Je déguste <br />
+            <span>Avec satisfaction</span>
+          </p>
+        </div>
+      </div>
+      <div class="nouveaute mt-4">
+        <div class="section-title">
+          <h4>{{ titre }}</h4>
+          <hr />
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          @for (item of getArticlesPage(); track $index) {
+          <div class="col">
+            <div class="card" id="card">
+              <div
+                class="text-center image"
+                [routerLink]="['/detailsProduit', item.id]"
+              >
+                <img src="{{ urlBaseImage }}{{ item.image }}" alt="" />
+              </div>
+              <div class="card-text">
+                <h6
+                  class="text-center"
+                  [routerLink]="['/detailsProduit', item.id]"
+                >
+                  {{ item.nom_produit }}
+                </h6>
+                <span
+                  class="text-center"
+                  [routerLink]="['/detailsProduit', item.id]"
+                  >{{ item.prix }} fcfa</span
+                >
+                <div class="text-center">
+                  <button class="btn" (click)="postPanier(item)">
+                    Ajouter au panier
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          } @if (search().length==0) {
+          <div class="m-auto">
+            <img src="assets/empty_image.png" class="img-fluid" alt="" />
+          </div>
+          }
+        </div>
+        <div class="pagination">
+          <button
+            [disabled]="pageActuelle === 1"
+            (click)="pageActuelle = pageActuelle - 1"
+          >
+            Précedent
+          </button>
+          @for (page of pages; track $index) {
+
+          <span (click)="pageActuelle = page"> {{ page }}</span>
+          }
+          <button
+            [disabled]="pageActuelle === totalPages"
+            (click)="pageActuelle = pageActuelle + 1"
+          >
+            Suivant
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

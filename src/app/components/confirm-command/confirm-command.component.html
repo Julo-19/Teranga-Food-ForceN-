@@ -1,0 +1,129 @@
+<div class="container">
+  <div class="panier-container">
+    <div class="panier-left">
+      <div class="adresse">
+        <div class="section-title">
+          <h4 class="p-2 pb-3 fw-bold">1.ADRESSE</h4>
+          <hr />
+          <div
+            class="d-flex justify-content-between align-items-center px-3 adresse-item"
+          >
+            <img src="assets/vector.png" alt="" />
+            <div>
+              <h5>{{profile.nom}}</h5>
+              <p>{{profile.adresse}}</p>
+              <p>{{profile.numero}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- livraison -->
+      <div class="livraison mt-4">
+        <div class="section-title">
+          <h4 class="p-2 pb-3 fw-bold">2.MODE DE LIVRAISON</h4>
+          <hr />
+          <div
+            class="d-flex  justify-content-between align-items-center px-3 livraison-item"
+          >
+            <img src="assets/livIcon.png" alt="" />
+            <div>
+              <h5>Livraison à domicile</h5>
+              <p>2000</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- articles -->
+      <div class="articles mt-4">
+        <div class="section-title pb-2">
+          <h4 class="p-2 pb-3 fw-bold">3.ARTICLES DE LA COMMANDE</h4>
+          <hr />
+          <div class="panier-items">
+            @for (item of panierProduits; track $index) {
+
+              <div class="panier-item">
+                <img src="{{urlBaseImage}}{{item.produit.image}}" alt="" />
+                <p>
+                  {{item.produit.nom_produit}} <br />
+                  <span>{{item.produit.prix }} fcfa</span>
+                </p>
+                <p>
+                  <!-- <i class="bi bi-plus quant" ></i> -->
+                  <input type="text" [value]="item.quantitePanier" disabled />
+                </p>
+                <span class="som-prix">{{item.produit.prix*item.quantitePanier}} fcfa</span>
+              </div>
+            }
+
+            <!-- <div class="panier-item"></div> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- confirmation -->
+      <div class="confirmation mt-4">
+        <div class="section-title">
+          <h4 class="p-2 pb-3 fw-bold">4.CONFIRMATION DE LA COMMANDE</h4>
+          <hr />
+        </div>
+        <div class="d-flex justify-content-between px-lg-5 p-3">
+          <h5>Articles</h5>
+          <span>{{sommeArticles}} fcfa</span>
+        </div>
+        <div class="d-flex justify-content-between px-lg-5 p-3">
+          <h5>Livraison</h5>
+          <span>{{prixLivraion}} fcfa</span>
+        </div>
+        <div class="d-flex justify-content-between px-lg-5 p-3">
+          <h5>Frais de tranfert 1%</h5>
+          <span>{{(sommeArticles+prixLivraion)*0.1 }} fcfa</span>
+        </div>
+        <hr />
+        <div class="d-flex justify-content-between px-lg-5 p-3">
+          <h5>TOTAL</h5>
+          <span>{{sommeArticles+prixLivraion+(sommeArticles+prixLivraion)*0.1}} fcfa</span>
+        </div>
+        <div class="w-50 m-auto mt-3 pb-3">
+
+          <button class="btn w-100" [routerLink]="['/confirmCommand']" (click)="payer()">Payer</button>
+        </div>
+      </div>
+    </div>
+    <div class="panier-right">
+      <div class="recapitulatif">
+        <h6 class="text-center pt-3 fw-bold">RECAPITULATIF</h6>
+        <hr />
+        <div
+          class="d-flex flex-column justify-content-between p-lg-3 p-3"
+          style="height: 150px"
+        >
+          <div class="d-flex justify-content-between w-100">
+            <span>{{nombreArticles}} Articles</span>
+            <span>{{sommeArticles}} fcfa</span>
+          </div>
+          <div class="d-flex justify-content-between w-100">
+            <span>Livraison</span>
+            <span>{{prixLivraion}} fcfa</span>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between w-100">
+            <span>Total</span>
+            <span>{{prixLivraion+sommeArticles}} fcfa</span>
+          </div>
+          <hr />
+        </div>
+      </div>
+      <div class="nb px-3">
+        <h6 class="text-center pt-3 fw-bold">
+          <i class="bi bi-info-square text-white" style="font-size: 16px"></i>
+          NB
+        </h6>
+        <hr />
+        <p>Veuillez bien préciser l’adresse de livraison</p>
+        <p>Livraison en moins de 3H</p>
+        <p>Uniquement à dakar</p>
+      </div>
+    </div>
+  </div>
+</div>

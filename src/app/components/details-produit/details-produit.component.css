@@ -1,0 +1,304 @@
+.produit-container {
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+  /* margin-top: 100px; */
+}
+
+.produit-left {
+  width: 25%;
+  height: 300px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  /* background-color: red; */
+  color: var(--darkbluecolor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.produit-left img {
+  height: 200px;
+  width: 80%;
+  border-radius: 10px;
+}
+
+.produit-right {
+  width: 72%;
+  background-color: white;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+.produit-right {
+  width: 72%;
+  background-color: white;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+#imageReponsive {
+  display: none;
+}
+.produit-right i {
+  font-size: 20px;
+  color: var(--darkbluecolor);
+  cursor: pointer;
+}
+.produit-right span {
+  cursor: pointer;
+}
+.produit-right p.description {
+  min-height: 150px;
+}
+.produit-right input {
+  width: 50px;
+  text-align: center;
+}
+.produit-right button {
+  background-color: var(--darkbluecolor);
+  color: white;
+  width: 180px;
+}
+#actionButton {
+  width: 50%;
+}
+
+.quant {
+  /* background-color: var(--darkbluecolor); */
+  padding: 1px;
+  color: white;
+}
+
+/* tabs secrion  */
+
+.tabs-contanier {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  height: 400px;
+  padding: 10px;
+}
+
+/* nav personnalization */
+#nav-tab button {
+  color: var(--darkbluecolor);
+  font-weight: bold;
+}
+
+nav {
+  text-align: center;
+}
+
+.modal button {
+  background-color: var(--darkbluecolor);
+  font-weight: bold;
+  color: white;
+}
+
+/* avis tabs */
+#nav-tabContent {
+  height: 90%;
+  /* background-color: green; */
+}
+
+.tab-pane {
+  height: 100%;
+  /* background-color: bisque; */
+}
+.avis-items {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  /* background-color: red; */
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+.avis-items .avis-item {
+  width: 30%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  height: 180px;
+  border-radius: 5px;
+
+  p {
+    height: 100px;
+    /* background-color: red; */
+    overflow: hidden;
+  }
+  img {
+    height: 150px;
+  }
+  div {
+    width: 50%;
+  }
+}
+i {
+  color: var(--darkbluecolor);
+  font-size: 20px;
+  cursor: pointer;
+}
+/* .active
+{
+  color: red;
+} */
+
+/* textarea */
+textarea {
+  width: 75%;
+  border: none;
+  border: 2px var(--darkbluecolor) solid;
+  padding-left: 20px;
+  transition: 1s ease;
+  height: 100px;
+  resize: none;
+  border-radius: 5px;
+}
+
+/* reponsive design */
+@media screen and (max-width: 767px) {
+  .produit-left {
+    width: 25%;
+    height: 300px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    /* background-color: red; */
+    color: var(--darkbluecolor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+  }
+  .produit-left img {
+    height: 200px;
+    width: 80%;
+  }
+
+  .produit-right {
+    width: 100%;
+    background-color: white;
+    box-shadow: none;
+  }
+  /* le bloc de commentaire et signalament */
+  #interactProduct,
+  #infoVendeur {
+    width: 100%;
+    flex-direction: column;
+  }
+  /* #infoVendeur{
+    width: 100%;
+    flex-direction: column;
+  } */
+  /* .produit-right {
+    width: 72%;
+    background-color: white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  } */
+  .produit-right p.description {
+    text-align: justify;
+  }
+
+  /* section button ajouterpanier, commander */
+  #actionButton {
+    width: 100%;
+  }
+  .produit-right button {
+    width: 150px;
+  }
+  #imageReponsive {
+    display: inline-block;
+    border-radius: 10px;
+    position: absolute;
+    right: 15px;
+    top: 150px;
+    width: 150px;
+    height: 180px;
+    object-fit: cover;
+  }
+  .produit-right i {
+    font-size: 20px;
+    color: var(--darkbluecolor);
+    cursor: pointer;
+  }
+  .avis-items {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    /* background-color: red; */
+    align-items: center;
+    height: 330px;
+    overflow: scroll;
+    flex-wrap: wrap;
+    gap: 2px;
+  }
+  .avis-items .avis-item {
+    width: 48%;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    height: 180px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+
+    p {
+      height: 100px;
+      /* background-color: red; */
+      overflow: hidden;
+    }
+    img {
+      height: 150px;
+    }
+    div {
+      width: 85%;
+    }
+  }
+  .avis-item i {
+    font-size: 16px;
+  }
+
+  /* cards produits similaires */
+  .similaire-items {
+    height: 330px;
+    overflow: scroll;
+  }
+  #card {
+    height: 300px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    /* border: 1px var(--goldcolor) solid; */
+    border-radius: 20px;
+    padding-top: 25px;
+    cursor: pointer;
+  }
+  #card .image {
+    height: 180px;
+    /* background-color: rebeccapurple; */
+    padding: 10px;
+  }
+  #card .card-text {
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+    text-align: center;
+  }
+  #card img {
+    height: 100%;
+    width: 90%;
+    border-radius: 5px;
+    object-fit: cover;
+  }
+  #card h6 {
+    background-color: transparent;
+    color: var(--darkbluecolor);
+    text-align: start;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+  }
+  #card span {
+    background-color: transparent;
+    color: var(--clearcolor);
+    text-align: start;
+    padding: 0;
+    margin: 0;
+  }
+  #card button {
+    background-color: var(--darkbluecolor);
+    color: white;
+    width: 90%;
+    padding: 0;
+    padding-bottom: 3px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+}

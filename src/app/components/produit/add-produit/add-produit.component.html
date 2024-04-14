@@ -1,0 +1,47 @@
+<div class="container mt-3">
+  <div class="form-container px-5">
+    <h5 class="fw-bold fs-4">Ajout d'un produit</h5>
+    <div class="d-flex justify-content-center align-items-center form-container-element">
+
+      <div class="form-left">
+        <div class="form-element">
+          <label for="">Categorie</label>
+          <!-- <input type="text"> -->
+          <select name="" id="" [(ngModel)]="categorie_id">
+            @for (categorie of categories; track $index) {
+              <option [value]="categorie.id">{{categorie.nom_categorie}}</option>
+            }
+          </select>
+        </div>
+        <div class="form-element">
+          <label for="">Titre</label>
+          <input type="email"  [(ngModel)]="nom">
+        </div>
+        <div class="form-element">
+          <label for="">Description</label>
+          <!-- <input type="text"  [(ngModel)]="descripiton"> -->
+          <textarea name="" id="" cols="30" rows="10" [(ngModel)]="descripiton"></textarea>
+
+        </div>
+        <div class="form-element">
+          <label for="">Image</label>
+          <input type="file" style="padding: 0;" (change)="getFile($event)" >
+        </div>
+        <div class="form-element">
+          <label for="">Prix</label>
+          <input type="text"  [(ngModel)]="prix">
+        </div>
+        <div class="form-element">
+          <label for="">Quantité</label>
+          <input type="text"  [(ngModel)]="quantite">
+        </div>
+      </div>
+      <div class="form-image">
+        <img src="assets/addProduct_image.png" class="img-fluid" alt="">
+      </div>
+    </div>
+    <div class="text-center w-100">
+      <button class="btn " (click)="ajouter()">Ajouter</button>
+    </div>
+  </div>
+</div>

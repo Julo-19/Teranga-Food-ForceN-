@@ -1,0 +1,109 @@
+.side-router-container {
+  display: flex;
+  justify-content: space-between;
+}
+.sidemenu {
+  width: 8%;
+  background-color: var(--darkbluecolor);
+  position: fixed;
+  height: 89vh;
+  z-index: 5;
+  top: 80px;
+  /* bottom: -50px; */
+  left: 0;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 5px;
+}
+
+.sidemenu img {
+  background-color: white;
+  padding: 1px;
+  width: 50px;
+  border-radius: 10px;
+}
+.sidemenu div {
+  cursor: pointer;
+}
+
+.sidemenu div span {
+  background-color: white;
+  padding: 2px;
+  width: 150px;
+  border-radius: 10px;
+  position: absolute;
+  height: 30px;
+  color: var(--darkbluecolor);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 10px;
+  display: none;
+}
+
+.sidemenu div:hover span {
+  /* width: 100px;  */
+  display: inline-block;
+}
+.router-section {
+  width: 92%;
+  margin-left: 8%;
+}
+
+@media screen and (max-width: 767px) {
+  .side-router-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .sidemenu {
+    width: 7%;
+    background-color: var(--darkbluecolor);
+    position: fixed;
+    height: 90vh;
+    z-index: 5;
+    top: 80px;
+    /* bottom: -50px; */
+    left: 0;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 5px;
+    display: none;
+  }
+
+  .sidemenu img {
+    background-color: white;
+    padding: 1px;
+    width: 20px;
+    border-radius: 10px;
+  }
+
+  .sidemenu div span {
+    background-color: white;
+    padding: 2px;
+    width: 150px;
+    border-radius: 10px;
+    position: absolute;
+    height: 30px;
+    color: var(--darkbluecolor);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 10px;
+    /* display: none; */
+  }
+
+  .sidemenu div:hover span {
+    /* width: 100px;  */
+    display: inline-block;
+  }
+  .router-section {
+    width: 100%;
+    margin-left: 0px;
+  }
+}
