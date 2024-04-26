@@ -17,7 +17,8 @@ export class AllservicesService {
   // urlBaseImage = 'http://localhost:8000/images/';
 
   // distant server
-  urlBase = 'https://www.falltech.site/panierlocal_backend/';
+  // urlBase = 'https://www.falltech.site/panierlocal_backend/';
+    urlBase = 'http://127.0.0.1:8000/';
   urlBaseImage = 'https://www.falltech.site/panierlocal_backend/public/images/';
 
   public readonly prixLivraion = 2000;

@@ -19,12 +19,11 @@ export class AdresseComponent {
   public prenom = "";
   public naissance = new Date();
   public genre = "";
-  public nin = "";
-  public ninea = "";
   public adresse = "";
-  public numero = "";
-  public pass = "";
+  public telephone = "";
+  public password = "";
   public email = "";
+  public image = "";
   public user: any;
 
   // Methodes
@@ -44,11 +43,8 @@ export class AdresseComponent {
         this.nom = reponse.commercant.nom;
         this.prenom = reponse.commercant.prenom;
         this.email = reponse.commercant.email;
-        this.nin = reponse.commercant.nin;
         this.naissance = reponse.commercant.date_naiss;
-        this.numero = reponse.commercant.numero_tel;
-        this.genre = reponse.commercant.genre;
-        this.ninea = reponse.commercant.ninea;
+        this.telephone = reponse.commercant.numero_tel;
         this.adresse = reponse.commercant.adresse;
       });
     } else if (this.whoIsOnline() == "client") {
@@ -59,7 +55,7 @@ export class AdresseComponent {
         this.prenom = reponse.client.prenom;
         this.email = reponse.client.email;
         this.naissance = reponse.client.date_naiss;
-        this.numero = reponse.client.numero_tel;
+        this.telephone = reponse.client.numero_tel;
         this.genre = reponse.client.genre;
         this.adresse = reponse.client.adresse;
       });
@@ -71,9 +67,7 @@ export class AdresseComponent {
         this.nom = reponse.livreur.nom;
         this.prenom = reponse.livreur.prenom;
         this.email = reponse.livreur.email;
-        this.naissance = reponse.livreur.date_naiss;
-        this.numero = reponse.livreur.numero_tel;
-        this.genre = reponse.livreur.genre;
+        this.telephone = reponse.livreur.numero_tel;
         this.adresse = reponse.livreur.adresse;
       });
 
@@ -84,7 +78,8 @@ export class AdresseComponent {
     if (this.adresse=="") {
       this.service.message("Désolé", "error", "Veuillez renseigner tous les champs");
     } else {
-      this.user = new Commerçant(this.nom, this.prenom, this.email, this.pass, this.numero, this.nin, this.ninea, this.adresse, this.genre, this.naissance);
+      // this.user = new Commerçant(this.nom, this.prenom, this.email, this.password, this.telephone, this.adresse);
+      this.user = new Commerçant(this.nom, this.prenom, this.telephone, this.adresse, this.email,  this.password);
       console.log("user", this.user);
       this.service.post('api/modifierInfoCommercant', this.user, (reponse: any) => {
         if (reponse.status == 200) {

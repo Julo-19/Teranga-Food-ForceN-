@@ -15,16 +15,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
   // Attributs
-  public nom = "";
   public prenom = "";
-  public naissance = new Date();
-  public genre = "";
-  public nin = "";
-  public ninea = "";
+  public nom = "";
+  public telephone  = "";
   public adresse = "";
-  public numero = "";
-  public pass = "";
-  public email = "";
+  // public image = "";
+  public email  = "";
+  public password = "";
   public user: any;
   public confirmPass = "";
   public showHidePassword: any;
@@ -48,11 +45,9 @@ export class ProfileComponent implements OnInit {
         this.nom = reponse.commercant.nom;
         this.prenom = reponse.commercant.prenom;
         this.email = reponse.commercant.email;
-        this.nin = reponse.commercant.nin;
-        this.naissance = reponse.commercant.date_naiss;
-        this.numero = reponse.commercant.numero_tel;
-        this.genre = reponse.commercant.genre;
-        this.ninea = reponse.commercant.ninea;
+       
+        this.telephone = reponse.commercant.numero_tel;
+
         this.adresse = reponse.commercant.adresse;
       });
     } else if (this.whoIsOnline() == "client") {
@@ -62,9 +57,7 @@ export class ProfileComponent implements OnInit {
         this.nom = reponse.client.nom;
         this.prenom = reponse.client.prenom;
         this.email = reponse.client.email;
-        this.naissance = reponse.client.date_naiss;
-        this.numero = reponse.client.numero_tel;
-        this.genre = reponse.client.genre;
+        this.telephone = reponse.client.numero_tel;
         this.adresse = reponse.client.adresse;
       });
 
@@ -75,10 +68,9 @@ export class ProfileComponent implements OnInit {
         this.nom = reponse.livreur.nom;
         this.prenom = reponse.livreur.prenom;
         this.email = reponse.livreur.email;
-        this.naissance = reponse.livreur.date_naiss;
-        this.numero = reponse.livreur.numero_tel;
-        this.genre = reponse.livreur.genre;
+        this.telephone = reponse.livreur.numero_tel;
         this.adresse = reponse.livreur.adresse;
+        // this.image = reponse.livreur.image;
       });
 
     }
@@ -88,33 +80,33 @@ export class ProfileComponent implements OnInit {
     if (this.isConfirmInputAllowed) {
       if (this.service.whoIsOnline() == 'commercant') {
 
-        this.service.post('api/modifierPasswordCommercant', { password: this.pass }, ((reponse: any) => {
+        this.service.post('api/modifierPasswordCommercant', { password: this.password }, ((reponse: any) => {
           console.log('pass change', reponse);
           if (reponse.status == 200) {
             document.getElementById('ConfirmPasseInput')!.innerHTML = '';
             document.getElementById('validationPasse')!.innerHTML = '';
 
             this.service.message('Parfait', 'success', 'modification faite avec succès');
-            this.pass = "";
+            this.password = "";
             this.confirmPass = "";
           }
         }));
       } else if (this.service.whoIsOnline() == 'client') {
-        this.service.post('api/modifierPasswordClient', { password: this.pass }, ((reponse: any) => {
+        this.service.post('api/modifierPasswordClient', { password: this.password }, ((reponse: any) => {
           console.log('pass change', reponse);
           if (reponse.status == 200) {
             this.service.message('Parfait', 'success', 'modification faite avec succès');
-            this.pass = "";
+            this.password = "";
             this.confirmPass = "";
           }
         }));
 
       } else if (this.service.whoIsOnline() == 'livreur') {
-        this.service.post('api/modifierPasswordLivreur', { password: this.pass }, ((reponse: any) => {
+        this.service.post('api/modifierPasswordLivreur', { password: this.password }, ((reponse: any) => {
           console.log('pass change', reponse);
           if (reponse.status == 200) {
             this.service.message('Parfait', 'success', 'modification faite avec succès');
-            this.pass = "";
+            this.password = "";
             this.confirmPass = "";
           }
         }));
@@ -125,7 +117,8 @@ export class ProfileComponent implements OnInit {
       if (this.nom == "" || this.prenom == "") {
         this.service.message("Désolé", "error", "Veuillez renseigner tous les champs");
       } else {
-        this.user = new Commerçant(this.nom, this.prenom, this.email, this.pass, this.numero, this.nin, this.ninea, this.adresse, this.genre, this.naissance);
+        // this.user = new Commerçant(this.nom, this.prenom, this.email, this.image, this.telephone, this.image);
+        this.user = new Commerçant(this.nom, this.prenom, this.telephone, this.adresse, this.email,  this.password);
         console.log("user", this.user);
         this.service.post('api/modifierInfoCommercant', this.user, (reponse: any) => {
           if (reponse.status == 200) {
@@ -163,7 +156,7 @@ export class ProfileComponent implements OnInit {
   isPassConforme() {
     let validationPrenom = document.getElementById('ConfirmPasseInput');
 
-    if (this.pass == this.confirmPass && this.pass != "") {
+    if (this.password == this.confirmPass && this.password != "") {
       validationPrenom!.innerHTML = 'Conforme';
       validationPrenom!.classList.remove('error');
       validationPrenom!.classList.add('success');
@@ -172,7 +165,7 @@ export class ProfileComponent implements OnInit {
       validationPrenom!.classList.remove('success');
       validationPrenom!.classList.add('error');
     }
-    if (this.pass == "") {
+    if (this.password == "") {
       validationPrenom!.innerHTML = '';
 
     }
@@ -181,7 +174,7 @@ export class ProfileComponent implements OnInit {
   passeValidate() {
     let validationPrenom = document.getElementById('validationPasse');
     const nomPrenomRegex = /^[a-zA-Z]+[a-z0-9-@_&]{7,}$/;
-    if (nomPrenomRegex.test(this.pass)) {
+    if (nomPrenomRegex.test(this.password)) {
       validationPrenom!.innerHTML = 'valide';
       validationPrenom!.classList.remove('error');
       validationPrenom!.classList.add('success');
@@ -194,7 +187,7 @@ export class ProfileComponent implements OnInit {
       this.isConfirmInputAllowed = false;
 
     }
-    if (this.pass == "") {
+    if (this.password == "") {
       validationPrenom!.innerHTML = "";
     }
     this.isPassConforme();

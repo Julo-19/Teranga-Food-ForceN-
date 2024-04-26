@@ -7,10 +7,6 @@
           <label for="">Nom</label>
           <input type="text" [(ngModel)]="nom" />
         </div>
-        <div class="form-element">
-          <label for="">Naissance</label>
-          <input type="date" [(ngModel)]="naissance" />
-        </div>
 
         <div class="form-element">
           <label for="">Email</label>
@@ -18,10 +14,7 @@
         </div>
         @if (whoIsOnline()=="commercant") {
 
-        <div class="form-element">
-          <label for="">NIN</label>
-          <input type="text" [(ngModel)]="nin" />
-        </div>
+
         }
         <div class="form-element flex-column">
           <div class="d-flex justify-content-between">
@@ -29,7 +22,7 @@
             <label for="">Nouveau Pass</label>
             <div class="change-pass-bloc">
 
-              <input type="password" (input)="passeValidate()" id="passwordInput" style="width: 100%;" [(ngModel)]="pass" />
+              <input type="password" (input)="passeValidate()" id="passwordInput" style="width: 100%;" [(ngModel)]="password" />
               <i class="bi bi-eye"  (click)="showPassword()"></i>
             </div>
           </div>
@@ -43,23 +36,12 @@
           <input type="text" [(ngModel)]="prenom" />
         </div>
         <div class="form-element">
-          <label for="">Genre</label>
-          <!-- <input type="text" > -->
-          <select name="" id="" [(ngModel)]="genre">
-            <option value="homme">Homme</option>
-            <option value="femme">Femme</option>
-          </select>
-        </div>
-        <div class="form-element">
           <label for="">Telephone</label>
-          <input type="text" [(ngModel)]="numero" />
+          <input type="text" [(ngModel)]="telephone" />
         </div>
         @if (whoIsOnline()=="commercant") {
 
-        <div class="form-element">
-          <label for="">NINEA</label>
-          <input type="text" [(ngModel)]="ninea" />
-        </div>
+
         }
         <div class="form-element flex-column">
           <div class="d-flex justify-content-between">

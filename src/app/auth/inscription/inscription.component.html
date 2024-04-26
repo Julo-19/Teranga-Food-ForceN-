@@ -21,14 +21,18 @@
     } @if (displayForme) {
     <div class="d-flex justify-content-between px-4 w-100 form-left-container">
       <div class="form-left">
+        <!-- <div class="form-element">
+          <label for="">Prenom <span class="span_validate" id="validationNom"></span></label>
+          <input type="text" [(ngModel)]="prenom" (input)="nomValidate()"/>
+        </div> -->
         <div class="form-element">
           <label for="">Nom <span class="span_validate" id="validationNom"></span></label>
           <input type="text" [(ngModel)]="nom" (input)="nomValidate()"/>
         </div>
-        <div class="form-element">
-          <label for="">Naissance <span class="span_validate" id="validationNaissance"></span></label>
-          <input type="date" [(ngModel)]="naissance" id="inputDate"/>
-        </div>
+        <!-- <div class="form-element">
+          <label for="">Telephone <span class="span_validate" id="validationNaissance"></span></label>
+          <input type="date" [(ngModel)]="telephone" id="inputDate"/>
+        </div> -->
         <div class="form-element">
           <label for="">Adresse <span class="span_validate" id="validationAdresse"></span></label>
           <input type="text" [(ngModel)]="adresse" (input)="adresseValidate()"/>
@@ -38,11 +42,11 @@
           <input type="text" [(ngModel)]="email" (input)="emailValidate()"/>
         </div>
         @if (formType) {
-
+<!-- 
         <div class="form-element">
           <label for="">NIN <span class="span_validate" id="validationNIN"></span></label>
           <input type="text" [(ngModel)]="nin" (input)="ninValidate()"/>
-        </div>
+        </div> -->
         }
       </div>
 
@@ -51,29 +55,29 @@
           <label for="">Prenom <span class="span_validate" id="validationPrenom"></span></label>
           <input type="text" [(ngModel)]="prenom"  (input)="prenomValidate()"/>
         </div>
-        <div class="form-element">
+        <!-- <div class="form-element">
           <label for="">Genre <span class="span_validate" id="validationGenre"></span></label>
           <select name="" id="" [(ngModel)]="genre" (change)="genreValidate()">
             <option value="homme">Homme</option>
             <option value="femme">Femme</option>
           </select>
-        </div>
+        </div> -->
         <div class="form-element">
           <label for="">Tel <span class="span_validate" id="validationTelephone"></span></label>
-          <input type="text" [(ngModel)]="numero" (input)="telephoneValidate()" />
+          <input type="text" [(ngModel)]="telephone" (input)="telephoneValidate()" />
         </div>
         @if (formType) {
 
-        <div class="form-element">
-          <label for="">NINEA <span class="span_validate" id="validationNinea"></span></label>
-          <input type="text" [(ngModel)]="ninea" (input)="nineaValidate()"/>
-        </div>
+        <!-- <div class="form-element">
+          <label for="">Image <span class="span_validate" id="validationNinea"></span></label>
+          <input type="text" [(ngModel)]="image"/>
+        </div> -->
         }
         <div class="form-element">
           <label for="">Passe <span class="span_validate" id="validationPasse"></span></label>
           <div class="d-flex justify-content-center w-75">
 
-            <input type="password" id="passwordInput" [(ngModel)]="pass" (input)="passeValidate()" style="width: 80%;" />
+            <input type="password" id="passwordInput" [(ngModel)]="password" (input)="passeValidate()" style="width: 80%;" />
             <i class="bi bi-eye"  (click)="showPassword()"></i>
           </div>
         </div>
@@ -84,7 +88,8 @@
       @if (formType) {
         <button class="btn" (click)="inscription('api/registerCommercant')" [disabled]="truthyTab.length<9">Inscription</button>
       }@else {
-        <button class="btn" (click)="inscription('api/registerClient')" [disabled]="truthyTab.length<7">Inscription</button>
+        <!-- <button class="btn" (click)="inscription('api/registerClient')" [disabled]="truthyTab.length<7">Inscription</button> -->
+        <button class="btn" (click)="inscription('api/inscription_user')" [disabled]="truthyTab.length<5">Inscription</button>
 
       }
     </div>

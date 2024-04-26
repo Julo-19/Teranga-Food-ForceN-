@@ -20,16 +20,13 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 export class InscriptionComponent {
 
   // Attributs
-  public nom = "";
   public prenom = "";
-  public naissance: any;
-  public genre = "";
-  public nin = "";
-  public ninea = "";
+  public nom = "";
+  public telephone = "";
   public adresse = "";
-  public numero = "";
-  public pass = "";
   public email = "";
+  public password = "";
+  // public image = "";
   public user: any;
   public displayForme = false;
   public formType = false;
@@ -46,15 +43,16 @@ export class InscriptionComponent {
   // la fonction qui permet d'inscrire un utilisateur
   inscription(chemin: any) {
     // alert(chemin);
-    if (this.nom == "" || this.prenom == "" || this.naissance == undefined || this.genre == "" || this.adresse == "" || this.numero == "" || this.pass == "" || this.email == "" || this.truthyTab.length<7) {
+    if (this.prenom == "" || this.nom == "" || this.telephone == "" || this.adresse == ""  || this.email == "" ||  this.password == "" || this.truthyTab.length<6) {
       this.service.message("Désolé", "error", "Veuillez renseigner tous les champs");
     } else {
-      this.user = new Commerçant(this.nom, this.prenom, this.email, this.pass, this.numero, this.nin, this.ninea, this.adresse, this.genre, this.naissance);
+      this.user = new Commerçant(this.prenom, this.nom, this.telephone, this.adresse, this.email,  this.password);
       // console.log("user", this.user);
       this.service.post(chemin, this.user, (reponse: any) => {
         if (reponse.status == 200) {
           // console.log('success', reponse);
           this.router.navigate(['/connexion']);
+         
           this.service.message("Merci!!!", "success", "Inscription faite avec succès,Veuillez vous connecter");
         } else {
           console.table(reponse.errorsList);
@@ -66,7 +64,7 @@ export class InscriptionComponent {
             this.service.message("Désolé!!!", "error", "Inscription  échouée, vérifier la saisie => " + Object.values(reponse.errorsList).join('--'));
           } else {
 
-            this.service.message("Désolé!!!", "error", "Inscription  échouée, vérifier la saisie ");
+            this.service.message("Sorry!!!", "error", "Inscription  échouée, vérifier la saisie ");
           }
         }
       });
@@ -179,7 +177,7 @@ export class InscriptionComponent {
   telephoneValidate() {
     let validationPrenom = document.getElementById('validationTelephone');
     const nomPrenomRegex = /^(77|76|75|78|33)[0-9]{7}$/;
-    if (nomPrenomRegex.test(this.numero)) {
+    if (nomPrenomRegex.test(this.telephone)) {
       // console.log(nomPrenomRegex.test(this.numero));
       validationPrenom!.innerHTML = 'valide';
       validationPrenom!.classList.remove('error');
@@ -197,35 +195,35 @@ export class InscriptionComponent {
         this.truthyTab.splice(this.truthyTab.findIndex((value:any)=>value.telephone==true),1);
       }
     }
-    if (this.numero=="") {
+    if (this.telephone=="") {
       validationPrenom!.innerHTML="";
     }
   }
-  ninValidate() {
-    let validationPrenom = document.getElementById('validationNIN');
-    const nomPrenomRegex = /^[0-9]{10,15}$/;
-    if (nomPrenomRegex.test(this.nin)) {
-      // console.log(nomPrenomRegex.test(this.nin));
-      validationPrenom!.innerHTML = 'valide';
-      validationPrenom!.classList.remove('error');
-      validationPrenom!.classList.add('success');
-      if (this.truthyTab.find((value:any)=>value.nin==true)==undefined) {
-        this.truthyTab.push({nin:true});
-      }
+  // ninValidate() {
+  //   let validationPrenom = document.getElementById('validationNIN');
+  //   const nomPrenomRegex = /^[0-9]{10,15}$/;
+  //   if (nomPrenomRegex.test(this.nin)) {
+  //     // console.log(nomPrenomRegex.test(this.nin));
+  //     validationPrenom!.innerHTML = 'valide';
+  //     validationPrenom!.classList.remove('error');
+  //     validationPrenom!.classList.add('success');
+  //     if (this.truthyTab.find((value:any)=>value.nin==true)==undefined) {
+  //       this.truthyTab.push({nin:true});
+  //     }
 
-    } else {
-      // console.log(nomPrenomRegex.test(this.nin));
-      validationPrenom!.innerHTML = 'invalide';
-      validationPrenom!.classList.remove('success');
-      validationPrenom!.classList.add('error');
-      if (this.truthyTab.find((value:any)=>value.nin==true)!=undefined) {
-        this.truthyTab.splice(this.truthyTab.findIndex((value:any)=>value.nin==true),1);
-      }
-    }
-    if (this.nin=="") {
-      validationPrenom!.innerHTML="";
-    }
-  }
+  //   } else {
+  //     // console.log(nomPrenomRegex.test(this.nin));
+  //     validationPrenom!.innerHTML = 'invalide';
+  //     validationPrenom!.classList.remove('success');
+  //     validationPrenom!.classList.add('error');
+  //     if (this.truthyTab.find((value:any)=>value.nin==true)!=undefined) {
+  //       this.truthyTab.splice(this.truthyTab.findIndex((value:any)=>value.nin==true),1);
+  //     }
+  //   }
+  //   if (this.nin=="") {
+  //     validationPrenom!.innerHTML="";
+  //   }
+  // }
 
   adresseValidate() {
     let validationPrenom = document.getElementById('validationAdresse');
@@ -256,7 +254,7 @@ export class InscriptionComponent {
   passeValidate() {
     let validationPrenom = document.getElementById('validationPasse');
     const nomPrenomRegex = /^[a-zA-Z]+[a-z0-9-@_&]{7,}$/;
-    if (nomPrenomRegex.test(this.pass)) {
+    if (nomPrenomRegex.test(this.password)) {
       // console.log(nomPrenomRegex.test(this.pass));
       validationPrenom!.innerHTML = 'valide';
       validationPrenom!.classList.remove('error');
@@ -274,7 +272,7 @@ export class InscriptionComponent {
         this.truthyTab.splice(this.truthyTab.findIndex((value:any)=>value.passe==true),1);
       }
     }
-    if (this.pass=="") {
+    if (this.password=="") {
       validationPrenom!.innerHTML="";
     }
     // console.log(this.truthyTab);
@@ -296,7 +294,7 @@ export class InscriptionComponent {
     console.warn(inputDate)
     // inputDate!.ariaValueMax='Thu Feb 22 2005 00:00:00 GMT+0000';
     const nomPrenomRegex = /^[0-9]+[/]+[0-9]+[/]+[0-9]{2005,}$/;
-    if (nomPrenomRegex.test(this.pass)) {
+    if (nomPrenomRegex.test(this.password)) {
       // console.log(nomPrenomRegex.test(this.pass));
       validationPrenom!.innerHTML = 'valide';
       validationPrenom!.classList.remove('error');
@@ -312,31 +310,31 @@ export class InscriptionComponent {
     }
   }
 
-  nineaValidate() {
-    let validationPrenom = document.getElementById('validationNinea');
-    const nomPrenomRegex = /^[0-9]+[0-9]{8,8}$/;
-    if (nomPrenomRegex.test(this.ninea)) {
-      // console.log(nomPrenomRegex.test(this.pass));
-      validationPrenom!.innerHTML = 'valide';
-      validationPrenom!.classList.remove('error');
-      validationPrenom!.classList.add('success');
-      if (this.truthyTab.find((value:any)=>value.ninea==true)==undefined) {
-        this.truthyTab.push({ninea:true});
-      }
+  // nineaValidate() {
+  //   let validationPrenom = document.getElementById('validationNinea');
+  //   const nomPrenomRegex = /^[0-9]+[0-9]{8,8}$/;
+  //   if (nomPrenomRegex.test(this.ninea)) {
+  //     // console.log(nomPrenomRegex.test(this.pass));
+  //     validationPrenom!.innerHTML = 'valide';
+  //     validationPrenom!.classList.remove('error');
+  //     validationPrenom!.classList.add('success');
+  //     if (this.truthyTab.find((value:any)=>value.ninea==true)==undefined) {
+  //       this.truthyTab.push({ninea:true});
+  //     }
 
-    } else {
-      // console.log(nomPrenomRegex.test(this.pass));
-      validationPrenom!.innerHTML = 'invalide';
-      validationPrenom!.classList.remove('success');
-      validationPrenom!.classList.add('error');
-      if (this.truthyTab.find((value:any)=>value.ninea==true)!=undefined) {
-        this.truthyTab.splice(this.truthyTab.findIndex((value:any)=>value.ninea==true),1);
-      }
-    }
-    if (this.ninea=="") {
-      validationPrenom!.innerHTML="";
-    }
-    // console.log(this.truthyTab);
-    // console.log(this.truthyTab.length);
-  }
+  //   } else {
+  //     // console.log(nomPrenomRegex.test(this.pass));
+  //     validationPrenom!.innerHTML = 'invalide';
+  //     validationPrenom!.classList.remove('success');
+  //     validationPrenom!.classList.add('error');
+  //     if (this.truthyTab.find((value:any)=>value.ninea==true)!=undefined) {
+  //       this.truthyTab.splice(this.truthyTab.findIndex((value:any)=>value.ninea==true),1);
+  //     }
+  //   }
+  //   if (this.ninea=="") {
+  //     validationPrenom!.innerHTML="";
+  //   }
+  //   // console.log(this.truthyTab);
+  //   // console.log(this.truthyTab.length);
+  // }
 }

@@ -34,7 +34,7 @@ export class ConnexionComponent {
       this.service.message("Désolé", "error", "Veuillez renseigner tous les champs");
     } else {
 
-      this.service.post('api/login', { email: this.email, password: this.password }, (reponse: any) => {
+      this.service.post('api/auth/login', { email: this.email, password: this.password }, (reponse: any) => {
         if (reponse.status == 200) {
           let onlineUser = {
             token: reponse.authorization.token,

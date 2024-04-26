@@ -24,7 +24,7 @@ export class AccueilComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.get("api/produits", (reponse: any) => {
+    this.service.get("api/liste_article", (reponse: any) => {
       this.produits = reponse.data;
       //  console.log(reponse.data);
     });
